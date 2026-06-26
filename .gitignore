@@ -1,0 +1,14 @@
+# dependencies
+node_modules/
+# build output (NEVER committed to the internal repo; published separately to the public repo)
+dist/
+.astro/
+# env / local
+*.local
+.env
+.env.*
+.DS_Store
+Thumbs.db
+# editor
+.vscode/
+.idea/

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/staticwebapp.config.json",
+  "navigationFallback": {
+    "rewrite": "/404.html",
+    "exclude": ["/assets/*", "/brand/*", "/fonts/*", "/css/*", "*.{svg,png,jpg,jpeg,webp,ico,woff2,css,js}"]
+  },
+  "responseOverrides": {
+    "404": { "rewrite": "/404.html", "statusCode": 404 }
+  },
+  "globalHeaders": {
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+    "Permissions-Policy": "geolocation=(), microphone=(), camera=()"
+  },
+  "mimeTypes": { ".svg": "image/svg+xml", ".woff2": "font/woff2" }
+}
