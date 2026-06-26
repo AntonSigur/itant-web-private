@@ -50,7 +50,7 @@ SVG `<path>` markup to the `paths` map, then reference that key in
 | `subtagline` | Hero sub-line (boutique-seniority one-liner). |
 | `heroDescription` | The hero description paragraph. |
 | `email` | Contact email — drives the quiet `mailto:` strip. |
-| `location`, `locality`, `country` | Reykjavík / Iceland notes (contact + footer + JSON-LD). |
+| `location`, `locality`, `country` | Mosfellsb\u00e6r / Iceland notes (contact + footer + JSON-LD). |
 | `registrationNo` | Company registration no. (kennitala) — **placeholder**, replace. |
 | `lineage.*` | G9 / CertainGuard band copy and links. |
 | `seo.title`, `seo.description` | `<title>` and meta description / OG / Twitter. |

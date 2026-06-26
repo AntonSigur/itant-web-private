@@ -10,6 +10,11 @@
     "icon": "code"
   },
   {
+    "title": "Distributed & message-based systems",
+    "summary": "Event-driven, message-based architectures — decoupled services on message brokers and service buses (e.g. RabbitMQ, NServiceBus) that stay reliable and observable at scale.",
+    "icon": "nodes"
+  },
+  {
     "title": "Cloud & Azure architecture",
     "summary": "Well-architected cloud on Microsoft Azure — landing zones, infrastructure-as-code and cost-aware designs that scale with the business.",
     "icon": "cloud"

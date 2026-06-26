@@ -88,7 +88,7 @@ the fallback). Avoid third-party font CDNs for privacy/perf.
    (kept brief and secondary).
 5. **Contact** — a deliberately **quiet strip**: a LinkedIn-first line plus a
    small `mailto:` + location (no backend, no contact card).
-6. **Footer** — © IT Ant ehf, current year, Reykjavík; small LinkedIn link.
+6. **Footer** — © IT Ant ehf, current year, Mosfellsb\u00e6r; small LinkedIn link.
 
 ## Logo usage
 

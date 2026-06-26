@@ -4,7 +4,8 @@
    the mark is a solid black ant on white, so the system is an INK + PAPER
    monochrome base. The single amber accent is a brand extension that nods to
    the ant motif (warm, earthen) — used for emphasis, never as body text on
-   white below AA contrast. See docs/DESIGN.md.
+   white below AA contrast, and never in the "IT Ant" brand name itself
+   (which stays black). See docs/DESIGN.md.
    =========================================================================== */
 
 :root {
@@ -16,7 +17,7 @@
   --line: #e6e5e0;       /* hairline borders */
   --slate: #565b64;      /* muted secondary text (AA on paper) */
 
-  /* Accent (brand extension, ant motif) */
+  /* Accent (brand extension, ant motif) — used for emphasis, NOT the brand name. */
   --amber: #e08a1e;      /* accent surfaces, underlines, marks */
   --amber-deep: #8a520b; /* accent text on paper (AA), hover */
   --amber-soft: #fbf1e2; /* tinted accent background */
@@ -234,7 +235,7 @@ p {
   font-size: 1.15rem;
 }
 .brand__name span {
-  color: var(--amber-deep);
+  color: var(--ink);
 }
 .site-nav {
   display: flex;

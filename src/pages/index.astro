@@ -5,7 +5,6 @@ import site from '../data/site.json';
 import services from '../data/services.json';
 
 const mailto = `mailto:${site.email}?subject=${encodeURIComponent('IT Ant — enquiry')}`;
-const linkedin = site.principal.linkedinUrl;
 ---
 <Base>
   <header class="site-header">
@@ -20,14 +19,6 @@ const linkedin = site.principal.linkedinUrl;
           <a href="#ventures">Products</a>
           <a href="#contact">Contact</a>
         </div>
-        <a
-          class="btn btn--primary"
-          href={linkedin}
-          rel="noopener"
-          target="_blank"
-        >
-          <Icon name="linkedin" /> {site.principal.linkedinLabel}
-        </a>
       </nav>
     </div>
   </header>
@@ -42,10 +33,7 @@ const linkedin = site.principal.linkedinUrl;
           <p class="hero__sub">{site.subtagline}</p>
           <p class="hero__desc">{site.heroDescription}</p>
           <div class="hero__cta">
-            <a class="btn btn--primary" href={linkedin} rel="noopener" target="_blank">
-              <Icon name="linkedin" /> {site.principal.linkedinLabel}
-            </a>
-            <a class="btn btn--ghost" href="#expertise">Areas of expertise</a>
+            <a class="btn btn--primary" href="#expertise">Areas of expertise</a>
           </div>
           <!-- The "IT Ant ≈ IT consultAnt" wordplay, kept understated. -->
           <p class="hero__pun">IT Ant — your IT <span>consultAnt</span>.</p>
@@ -71,8 +59,8 @@ const linkedin = site.principal.linkedinUrl;
           <p>
             A focused, senior practice led by {site.principal.name},
             {site.principal.title.toLowerCase()}. Deep, hands-on expertise
-            across the work that keeps complex systems coherent — no
-            bureaucracy, no hand-offs to a junior team.
+            across the work that keeps complex systems coherent — senior,
+            direct, and close to delivery.
           </p>
         </div>
         <div class="cards">
@@ -122,8 +110,6 @@ const linkedin = site.principal.linkedinUrl;
     <section class="section--mist contact-strip" id="contact">
       <div class="container contact-strip__inner">
         <p class="contact-strip__lead">
-          The best way to learn more is to
-          <a href={linkedin} rel="noopener" target="_blank">see the background on LinkedIn</a>.
           For direct enquiries, a quiet note works fine.
         </p>
         <p class="contact-strip__meta">
