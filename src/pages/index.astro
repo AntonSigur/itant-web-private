@@ -5,6 +5,7 @@ import site from '../data/site.json';
 import services from '../data/services.json';
 
 const mailto = `mailto:${site.email}?subject=${encodeURIComponent('IT Ant — enquiry')}`;
+const linkedin = site.principal.linkedinUrl;
 ---
 <Base>
   <header class="site-header">
@@ -15,11 +16,18 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent('IT Ant — en
       </a>
       <nav class="site-nav" aria-label="Primary">
         <div class="site-nav__links">
-          <a href="#services">Services</a>
+          <a href="#expertise">Expertise</a>
           <a href="#ventures">Products</a>
           <a href="#contact">Contact</a>
         </div>
-        <a class="btn btn--primary" href={mailto}>{site.primaryCtaLabel}</a>
+        <a
+          class="btn btn--primary"
+          href={linkedin}
+          rel="noopener"
+          target="_blank"
+        >
+          <Icon name="linkedin" /> {site.principal.linkedinLabel}
+        </a>
       </nav>
     </div>
   </header>
@@ -29,14 +37,18 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent('IT Ant — en
     <section class="hero" id="top">
       <div class="container hero__inner">
         <div class="hero__copy">
-          <span class="eyebrow">IT Ant ehf · Iceland</span>
-          <h1>Your IT <span class="pun">consultAnt</span>.</h1>
+          <span class="eyebrow">{site.company} · {site.location}</span>
+          <h1>Senior enterprise architecture for complex systems.</h1>
           <p class="hero__sub">{site.subtagline}</p>
           <p class="hero__desc">{site.heroDescription}</p>
           <div class="hero__cta">
-            <a class="btn btn--primary" href={mailto}>{site.primaryCtaLabel}</a>
-            <a class="btn btn--ghost" href="#services">What we do</a>
+            <a class="btn btn--primary" href={linkedin} rel="noopener" target="_blank">
+              <Icon name="linkedin" /> {site.principal.linkedinLabel}
+            </a>
+            <a class="btn btn--ghost" href="#expertise">Areas of expertise</a>
           </div>
+          <!-- The "IT Ant ≈ IT consultAnt" wordplay, kept understated. -->
+          <p class="hero__pun">IT Ant — your IT <span>consultAnt</span>.</p>
         </div>
         <div class="hero__art">
           <img
@@ -50,15 +62,17 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent('IT Ant — en
       </div>
     </section>
 
-    <!-- Services -->
-    <section class="section" id="services">
+    <!-- Expertise -->
+    <section class="section" id="expertise">
       <div class="container">
         <div class="section__head">
-          <span class="eyebrow">What we do</span>
-          <h2>Dependable IT, sized for your business</h2>
+          <span class="eyebrow">Areas of expertise</span>
+          <h2>Architecture you can build on</h2>
           <p>
-            One focused team across advisory, engineering and operations — so you
-            get senior judgement without the overhead of a big agency.
+            A focused, senior practice led by {site.principal.name},
+            {site.principal.title.toLowerCase()}. Deep, hands-on expertise
+            across the work that keeps complex systems coherent — no
+            bureaucracy, no hand-offs to a junior team.
           </p>
         </div>
         <div class="cards">
@@ -92,44 +106,30 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent('IT Ant — en
         <div>
           <article class="venture-card">
             <h3>G9</h3>
-            <p>A product house building practical software — the workshop behind our ventures.</p>
+            <p>A product house building practical software — the workshop behind the ventures.</p>
             <a href={site.lineage.g9Url} rel="noopener" target="_blank">g9.is ↗</a>
           </article>
           <article class="venture-card">
             <h3>CertainGuard</h3>
-            <p>Our flagship product for dependable certificate &amp; security lifecycle management.</p>
+            <p>A product for dependable certificate &amp; security lifecycle management.</p>
             <a href={site.lineage.certainGuardUrl} rel="noopener" target="_blank">certainguard.g9.is ↗</a>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
-    <section class="section section--mist" id="contact">
-      <div class="container contact__inner">
-        <div>
-          <span class="eyebrow">Get in touch</span>
-          <h2 class="section__head" style="margin-bottom:0.6rem">Let's talk about your IT.</h2>
-          <p style="color:var(--slate);max-width:34rem">
-            Have a project, a problem, or just need a second opinion? Send a note and
-            we'll get back to you. No call centres, no runaround — you talk to the
-            people who do the work.
-          </p>
-          <span class="tag">Based in {site.location}</span>
-        </div>
-        <div class="contact__card">
-          <span class="eyebrow">Email us</span>
-          <br />
-          <a class="contact__email" href={mailto}>{site.email}</a>
-          <p style="margin:0;color:var(--slate)">
-            We reply to genuine enquiries, usually within one business day.
-          </p>
-          <ul class="contact__meta">
-            <li><Icon name="mail" /> <a href={mailto}>{site.email}</a></li>
-            <li><Icon name="pin" /> {site.location}</li>
-            <li><Icon name="clock" /> Mon–Fri · Iceland (GMT)</li>
-          </ul>
-        </div>
+    <!-- Contact — deliberately quiet & secondary -->
+    <section class="section--mist contact-strip" id="contact">
+      <div class="container contact-strip__inner">
+        <p class="contact-strip__lead">
+          The best way to learn more is to
+          <a href={linkedin} rel="noopener" target="_blank">see the background on LinkedIn</a>.
+          For direct enquiries, a quiet note works fine.
+        </p>
+        <p class="contact-strip__meta">
+          <a href={mailto}><Icon name="mail" /> {site.email}</a>
+          <span><Icon name="pin" /> {site.location}</span>
+        </p>
       </div>
     </section>
   </main>

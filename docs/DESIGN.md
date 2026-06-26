@@ -1,14 +1,29 @@
 # Design — IT Ant ehf (itant.is)
 
-## The concept: "IT consultAnt"
+## Positioning: a senior enterprise-architect practice
 
-The brand is built on a single, tasteful pun: **IT Ant ≈ IT consult-Ant**. The
-company is an IT **consultancy**, and the logo is a literal **ant**. The site
-leans on this in the hero ("Your IT **consultАnt**.") and tone — clever, but
-never jokey. Supporting line: *"Small team. Heavy lifting."* (ants carry many
-times their own weight — competence and dependability, understated).
+IT Ant ehf is presented as a **boutique, senior architecture practice** led by
+**Anton Sigurjónsson**, a senior enterprise systems architect with many years of
+experience. The site leads with **deep expertise and enterprise-grade
+architecture** — calm, credible, and direct. The tone implies a hands-on,
+one-principal practice **without ever saying "solo" or "one-man shop"**: instead
+it leans on phrases like *"A focused, senior practice"*, *"you work with the
+architect, not a sales team"*, and *"Direct access to a senior architect — not a
+layer of account managers."* Restraint reads as seniority.
 
-The personality target: **professional, competent, understated, trustworthy.**
+The "IT Ant ≈ IT consult**Ant**" wordplay is retained but kept **understated and
+secondary** — a single muted line in the hero (`.hero__pun`), never the headline.
+
+### Engagement model: LinkedIn-primary, contact-secondary
+
+Sales CTAs are deliberately **de-emphasised**. The main way to engage is *"here's
+who I am — see my background"*, so the **primary action everywhere is Anton's
+LinkedIn profile** (header button and hero primary button:
+*"View profile on LinkedIn"*). Contact is **quiet and secondary**: a slim
+`mailto:` strip near the foot of the page (`.contact-strip`) plus a small
+LinkedIn link in the footer — no big "Let's talk" hero buttons, no contact card.
+
+The personality target: **senior, competent, understated, trustworthy.**
 Lots of whitespace, restrained colour, strong typography, no gimmicks.
 
 ## Palette — derived from the logo
@@ -61,13 +76,19 @@ the fallback). Avoid third-party font CDNs for privacy/perf.
 
 ## Information architecture (single page)
 
-1. **Header** — sticky, translucent; logo (SVG) + wordmark + nav + primary CTA.
-2. **Hero** — eyebrow, headline with the "consultAnt" pun, sub-line, one-sentence
-   description, primary + secondary CTAs, logo art.
-3. **Services** — responsive grid of cards from `src/data/services.json`.
-4. **Products / ventures** — dark band: G9 and CertainGuard lineage + links.
-5. **Contact** — `mailto:` (no backend), Reykjavík note, response expectation.
-6. **Footer** — © IT Ant ehf, current year, Reykjavík, Iceland.
+1. **Header** — sticky, translucent; logo (SVG) + wordmark + nav; the primary
+   button is **LinkedIn** ("View profile on LinkedIn"), not a sales CTA.
+2. **Hero** — eyebrow, expertise-led headline (senior enterprise architecture),
+   sub-line conveying boutique seniority, one-paragraph description, **LinkedIn
+   as the primary action** + an "Areas of expertise" secondary link, and a muted
+   "consultAnt" wordplay line. Logo art alongside.
+3. **Expertise** — responsive grid of cards from `src/data/services.json`,
+   reframed as **areas of expertise** for a senior enterprise architect.
+4. **Products / ventures** — dark band: G9 and CertainGuard lineage + links
+   (kept brief and secondary).
+5. **Contact** — a deliberately **quiet strip**: a LinkedIn-first line plus a
+   small `mailto:` + location (no backend, no contact card).
+6. **Footer** — © IT Ant ehf, current year, Reykjavík; small LinkedIn link.
 
 ## Logo usage
 

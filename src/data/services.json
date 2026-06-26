@@ -1,32 +1,32 @@
 [
   {
-    "title": "IT consulting & advisory",
-    "summary": "A senior technologist in your corner — strategy, architecture reviews and honest second opinions that keep your roadmap grounded.",
+    "title": "Enterprise & solution architecture",
+    "summary": "Coherent target architectures for complex estates — aligning systems, teams and roadmaps so the whole holds together as it grows.",
     "icon": "compass"
   },
   {
-    "title": "Software & web development",
-    "summary": "From idea to shipped product: clean web apps, internal tools and integrations, built to be maintained — not just demoed.",
+    "title": "System design & integration",
+    "summary": "Designing how systems fit together: clear boundaries, robust integration and data flows that stay dependable under real-world load.",
     "icon": "code"
   },
   {
-    "title": "Cloud & Azure",
-    "summary": "Right-sized cloud on Microsoft Azure: migrations, infrastructure-as-code and cost-aware setups that scale when you do.",
+    "title": "Cloud & Azure architecture",
+    "summary": "Well-architected cloud on Microsoft Azure — landing zones, infrastructure-as-code and cost-aware designs that scale with the business.",
     "icon": "cloud"
   },
   {
     "title": "Security & certificate lifecycle",
-    "summary": "Practical security hardening and certificate lifecycle management, so expiries and audits stop being a fire drill.",
+    "summary": "Security architecture and certificate-lifecycle management built into the design — informed by shipping CertainGuard, not bolted on later.",
     "icon": "shield"
   },
   {
-    "title": "Automation & DevOps",
-    "summary": "CI/CD pipelines, deployment gates and automation that remove manual toil and make releases boring — the good kind.",
+    "title": "Modernization & technical strategy",
+    "summary": "Pragmatic modernization paths and technical strategy — sequencing change so legacy systems evolve without grinding delivery to a halt.",
     "icon": "gear"
   },
   {
-    "title": "Run & support",
-    "summary": "Dependable ongoing care: monitoring, maintenance and a steady hand when something needs attention out of hours.",
+    "title": "Hands-on engineering leadership",
+    "summary": "Senior, hands-on leadership through delivery — setting direction, raising the engineering bar and staying close to the code that matters.",
     "icon": "pulse"
   }
 ]

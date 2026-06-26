@@ -2,26 +2,31 @@
   "company": "IT Ant ehf",
   "domain": "itant.is",
   "url": "https://itant.is",
-  "tagline": "Your IT consultAnt.",
-  "subtagline": "Small team. Heavy lifting.",
-  "heroDescription": "IT Ant ehf is an Icelandic IT consultancy. We advise, build and run dependable technology for businesses — pragmatic engineering without the overhead of a big agency.",
-  "primaryCtaLabel": "Get in touch",
+  "principal": {
+    "name": "Anton Sigurjónsson",
+    "title": "Senior Enterprise Systems Architect",
+    "linkedinUrl": "https://www.linkedin.com/in/anton-sigurj%C3%B3nsson-3622689a/",
+    "linkedinLabel": "View profile on LinkedIn"
+  },
+  "tagline": "Senior enterprise architecture for complex systems.",
+  "subtagline": "A focused, senior practice — you work with the architect, not a sales team.",
+  "heroDescription": "IT Ant ehf is the practice of Anton Sigurjónsson, a senior enterprise systems architect with many years of experience designing dependable architecture for complex systems. Direct access to a senior architect — not a layer of account managers.",
   "email": "hello@itant.is",
   "location": "Reykjavík, Iceland",
   "locality": "Reykjavík",
   "country": "Iceland",
-  "registrationNo": "PLACEHOLDER — company registration no. (kennitala)",
+  "registrationNo": "PLACEHOLDER — company registration no. (kennitala); confirm before publishing",
   "lineage": {
     "intro": "We build our own products, too.",
-    "body": "IT Ant is the parent of the ANTS family and the company behind G9, a product house — and ultimately CertainGuard. The same hands that consult for you also ship real software.",
+    "body": "Alongside the architecture practice, the same hands ship real software through G9, a product house — and CertainGuard, a product for dependable certificate and security lifecycle management.",
     "g9Url": "https://g9.is",
-    "g9Label": "Meet G9",
+    "g9Label": "G9",
     "certainGuardUrl": "https://certainguard.g9.is",
-    "certainGuardLabel": "See CertainGuard"
+    "certainGuardLabel": "CertainGuard"
   },
   "seo": {
-    "title": "IT Ant ehf — Your IT consultAnt | itant.is",
-    "description": "IT Ant ehf is an Icelandic IT consultancy: IT advisory, software & web development, cloud & Azure, security and automation. Small team, heavy lifting.",
+    "title": "IT Ant ehf — Senior enterprise systems architecture | itant.is",
+    "description": "IT Ant ehf is the senior architecture practice of Anton Sigurjónsson — enterprise & solution architecture, system design and integration, cloud & Azure, and technical strategy for complex systems. A focused, senior practice.",
     "ogImage": "/brand/itant-logo-800x600.png",
     "twitterHandle": ""
   }

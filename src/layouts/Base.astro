@@ -19,6 +19,12 @@ const jsonLd = {
   email: site.email,
   logo: new URL('/brand/itant-logo.png', site.url).href,
   description: site.seo.description,
+  founder: {
+    '@type': 'Person',
+    name: site.principal.name,
+    jobTitle: site.principal.title,
+    sameAs: [site.principal.linkedinUrl],
+  },
   address: {
     '@type': 'PostalAddress',
     addressLocality: site.locality,
@@ -67,7 +73,10 @@ const jsonLd = {
           <img src="/brand/itant-logo.svg" alt="" width="28" height="28" />
           {site.company}
         </span>
-        <span>© {year} {site.company} · {site.location}</span>
+        <span class="site-footer__meta">
+          <a href={site.principal.linkedinUrl} rel="noopener" target="_blank">LinkedIn</a>
+          <span>© {year} {site.company} · {site.location}</span>
+        </span>
       </div>
     </footer>
   </body>

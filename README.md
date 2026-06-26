@@ -1,12 +1,15 @@
 # IT Ant ehf — website (itant.is)
 
-Single-page, static **public landing** for **IT Ant ehf**, an Icelandic IT
-consultancy. Built with [Astro](https://astro.build) (v5, static output) and
-hand-written CSS. Clean, professional, fast, accessible.
+Single-page, static **public landing** for **IT Ant ehf**, the senior
+enterprise-architecture practice of **Anton Sigurjónsson**. Built with
+[Astro](https://astro.build) (v5, static output) and hand-written CSS. Clean,
+professional, fast, accessible.
 
-> **IT Ant ≈ IT consultAnt.** The brand plays — tastefully — on the consultant
-> pun. IT Ant is the parent of the ANTS family and the company behind **G9**
-> (a product house, https://g9.is) and **CertainGuard** (https://certainguard.g9.is).
+> **Positioning:** a focused, senior enterprise-architecture practice — expertise
+> first, contact understated, **LinkedIn as the primary call-to-action**. The
+> tasteful **IT Ant ≈ IT consultAnt** wordplay is kept but understated. IT Ant is
+> also the company behind **G9** (a product house, https://g9.is) and
+> **CertainGuard** (https://certainguard.g9.is).
 
 ## Quick start
 
@@ -30,8 +33,8 @@ webmaster/
 │  └─ robots.txt
 ├─ src/
 │  ├─ data/
-│  │  ├─ site.json       # global copy: tagline, description, email, lineage, SEO
-│  │  └─ services.json   # the service cards (edit here)
+│  │  ├─ site.json       # global copy: principal, hero, contact, lineage, SEO
+│  │  └─ services.json   # the expertise cards (edit here)
 │  ├─ components/Icon.astro
 │  ├─ layouts/Base.astro # <head>, SEO/OG/Twitter, JSON-LD, footer
 │  ├─ pages/
@@ -50,8 +53,8 @@ markup. See [`docs/CONTENT-UPDATES.md`](docs/CONTENT-UPDATES.md).
 ## Documentation
 
 - [`docs/DESIGN.md`](docs/DESIGN.md) — palette (derived from the logo), fonts,
-  information architecture, and the "consultAnt" concept.
-- [`docs/CONTENT-UPDATES.md`](docs/CONTENT-UPDATES.md) — how to edit services & copy.
+  information architecture, and the senior enterprise-architect positioning.
+- [`docs/CONTENT-UPDATES.md`](docs/CONTENT-UPDATES.md) — how to edit expertise & copy.
 - [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) — Azure Static Web Apps + the publish gate.
 
 ## Publishing / gating
