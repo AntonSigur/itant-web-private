@@ -1,0 +1,32 @@
+[
+  {
+    "title": "IT consulting & advisory",
+    "summary": "A senior technologist in your corner — strategy, architecture reviews and honest second opinions that keep your roadmap grounded.",
+    "icon": "compass"
+  },
+  {
+    "title": "Software & web development",
+    "summary": "From idea to shipped product: clean web apps, internal tools and integrations, built to be maintained — not just demoed.",
+    "icon": "code"
+  },
+  {
+    "title": "Cloud & Azure",
+    "summary": "Right-sized cloud on Microsoft Azure: migrations, infrastructure-as-code and cost-aware setups that scale when you do.",
+    "icon": "cloud"
+  },
+  {
+    "title": "Security & certificate lifecycle",
+    "summary": "Practical security hardening and certificate lifecycle management, so expiries and audits stop being a fire drill.",
+    "icon": "shield"
+  },
+  {
+    "title": "Automation & DevOps",
+    "summary": "CI/CD pipelines, deployment gates and automation that remove manual toil and make releases boring — the good kind.",
+    "icon": "gear"
+  },
+  {
+    "title": "Run & support",
+    "summary": "Dependable ongoing care: monitoring, maintenance and a steady hand when something needs attention out of hours.",
+    "icon": "pulse"
+  }
+]

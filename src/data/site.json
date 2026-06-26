@@ -1,0 +1,28 @@
+{
+  "company": "IT Ant ehf",
+  "domain": "itant.is",
+  "url": "https://itant.is",
+  "tagline": "Your IT consultAnt.",
+  "subtagline": "Small team. Heavy lifting.",
+  "heroDescription": "IT Ant ehf is an Icelandic IT consultancy. We advise, build and run dependable technology for businesses — pragmatic engineering without the overhead of a big agency.",
+  "primaryCtaLabel": "Get in touch",
+  "email": "hello@itant.is",
+  "location": "Reykjavík, Iceland",
+  "locality": "Reykjavík",
+  "country": "Iceland",
+  "registrationNo": "PLACEHOLDER — company registration no. (kennitala)",
+  "lineage": {
+    "intro": "We build our own products, too.",
+    "body": "IT Ant is the parent of the ANTS family and the company behind G9, a product house — and ultimately CertainGuard. The same hands that consult for you also ship real software.",
+    "g9Url": "https://g9.is",
+    "g9Label": "Meet G9",
+    "certainGuardUrl": "https://certainguard.g9.is",
+    "certainGuardLabel": "See CertainGuard"
+  },
+  "seo": {
+    "title": "IT Ant ehf — Your IT consultAnt | itant.is",
+    "description": "IT Ant ehf is an Icelandic IT consultancy: IT advisory, software & web development, cloud & Azure, security and automation. Small team, heavy lifting.",
+    "ogImage": "/brand/itant-logo-800x600.png",
+    "twitterHandle": ""
+  }
+}

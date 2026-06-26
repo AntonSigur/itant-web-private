@@ -1,0 +1,40 @@
+---
+/**
+ * Inline SVG icon set (no runtime JS, no external requests).
+ * Add a service icon by adding a new key here and referencing it in
+ * src/data/services.json. Strokes inherit `currentColor`.
+ */
+interface Props {
+  name: string;
+  class?: string;
+}
+const { name, class: className } = Astro.props;
+
+const paths: Record<string, string> = {
+  compass:
+    '<circle cx="12" cy="12" r="9"/><polygon points="16.2 7.8 13.4 13.4 7.8 16.2 10.6 10.6 16.2 7.8"/>',
+  code: '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>',
+  cloud:
+    '<path d="M17.5 19a4.5 4.5 0 0 0 .5-8.97A6 6 0 0 0 6.34 9.5 4 4 0 0 0 7 19h10.5Z"/>',
+  shield:
+    '<path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3Z"/><path d="M9 12l2 2 4-4"/>',
+  gear: '<circle cx="12" cy="12" r="3"/><path d="M19.4 13a7.6 7.6 0 0 0 0-2l1.7-1.3-1.7-3-2 .6a7.6 7.6 0 0 0-1.7-1l-.3-2.1h-3.4l-.3 2.1a7.6 7.6 0 0 0-1.7 1l-2-.6-1.7 3L4.6 11a7.6 7.6 0 0 0 0 2l-1.7 1.3 1.7 3 2-.6a7.6 7.6 0 0 0 1.7 1l.3 2.1h3.4l.3-2.1a7.6 7.6 0 0 0 1.7-1l2 .6 1.7-3L19.4 13Z"/>',
+  pulse: '<path d="M3 12h4l2 6 4-14 2 8h6"/>',
+  mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/>',
+  pin: '<path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/>',
+  clock: '<circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/>',
+};
+const body = paths[name] ?? '';
+---
+<svg
+  class={className}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+  set:html={body}
+></svg>

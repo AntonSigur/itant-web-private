@@ -1,0 +1,74 @@
+---
+import site from '../data/site.json';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title = site.seo.title, description = site.seo.description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, site.url).href;
+const ogImage = new URL(site.seo.ogImage, site.url).href;
+const year = new Date().getFullYear();
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: site.company,
+  url: site.url,
+  email: site.email,
+  logo: new URL('/brand/itant-logo.png', site.url).href,
+  description: site.seo.description,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: site.locality,
+    addressCountry: 'IS',
+  },
+  areaServed: 'IS',
+};
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#111317" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/brand/itant-logo.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.company} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="en_GB" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <slot />
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <span class="site-footer__brand">
+          <img src="/brand/itant-logo.svg" alt="" width="28" height="28" />
+          {site.company}
+        </span>
+        <span>© {year} {site.company} · {site.location}</span>
+      </div>
+    </footer>
+  </body>
+</html>

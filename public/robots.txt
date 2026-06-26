@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://itant.is/sitemap-index.xml

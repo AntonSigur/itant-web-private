@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="IT Ant">
+  <rect width="64" height="64" rx="14" fill="#111317"/>
+  <g fill="none" stroke="#e08a1e" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- legs -->
+    <path d="M30 34 L17 28 M30 38 L15 38 M30 42 L17 49"/>
+    <path d="M36 34 L49 28 M36 38 L51 38 M36 42 L49 49"/>
+    <!-- antennae -->
+    <path d="M27 21 L21 13 M31 20 L28 11"/>
+  </g>
+  <!-- body: head, thorax, abdomen -->
+  <g fill="#e08a1e">
+    <circle cx="33" cy="22" r="6"/>
+    <circle cx="33" cy="33" r="7.5"/>
+    <ellipse cx="33" cy="47" rx="9" ry="11"/>
+  </g>
+  <circle cx="31" cy="21" r="1.6" fill="#111317"/>
+</svg>
