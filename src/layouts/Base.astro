@@ -1,6 +1,7 @@
 ---
 import site from '../data/site.json';
 import '../styles/global.css';
+import AntsEasterEgg from '../components/AntsEasterEgg.astro';
 
 interface Props {
   title?: string;
@@ -70,7 +71,7 @@ const jsonLd = {
     <footer class="site-footer">
       <div class="container site-footer__inner">
         <span class="site-footer__brand">
-          <img src="/brand/itant-logo.svg" alt="" width="28" height="28" />
+          <img src="/brand/itant-logo.svg" alt="" width="28" height="28" data-ant-trigger />
           {site.company}
         </span>
         <span class="site-footer__meta">
@@ -79,5 +80,6 @@ const jsonLd = {
         </span>
       </div>
     </footer>
+    <AntsEasterEgg />
   </body>
 </html>

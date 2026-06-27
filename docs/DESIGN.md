@@ -102,3 +102,11 @@ the fallback). Avoid third-party font CDNs for privacy/perf.
 Minimal: subtle card hover lift and button translate. All transitions are
 disabled under `prefers-reduced-motion`. No JavaScript is required to render or
 read the page.
+
+## Easter egg
+
+A tasteful hidden surprise: **double-clicking any IT Ant logo summons 2–5
+crawling worker ants** (they accumulate, capped at 70, oldest recycled). It
+nods to the "ants are workers — we work hard" brand idea. Fully `aria-hidden`,
+`pointer-events:none`, single-rAF, and gentle/reduced under
+`prefers-reduced-motion`. See `docs/EASTER-EGG.md`.

@@ -1,0 +1,250 @@
+---
+// AntsEasterEgg.astro — a tasteful, self-contained easter egg.
+//
+// Theme: "ants are workers — we work hard." Double-clicking any IT Ant logo
+// summons a small crew (2–5) of little worker ants that wander the viewport
+// with natural, slightly-randomised paths. Doing it again summons more, so
+// repeated double-clicks fill the page with busy worker ants (capped for perf).
+//
+// Implementation notes:
+//   • All ants live in ONE fixed, pointer-events:none, aria-hidden overlay.
+//   • A SINGLE requestAnimationFrame loop drives every ant (no per-ant timers).
+//   • The crawler is a small inline vector ant (currentColor / solid ink),
+//     NOT the wide "ITANT.IS" logo raster.
+//   • prefers-reduced-motion: spawn fewer, move gently — never a frantic swarm.
+//   • No layout shift, no scroll interference; listeners are cleaned up on unload.
+---
+
+<script>
+  // ---- Tuning ---------------------------------------------------------------
+  const SPAWN_MIN = 2;          // ants added per double-click (lower bound)
+  const SPAWN_MAX = 5;          // ants added per double-click (upper bound)
+  const HARD_CAP = 70;          // total ants on screen (oldest recycled beyond this)
+  const IDLE_FADE_MS = 45_000;  // after this idle time, the colony gently wanders off
+
+  // Honour users who asked for less motion.
+  const reduceMotion =
+    window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // The crawler sprite: a clean little worker ant that reads at ~20px.
+  // Solid `currentColor` (ink) — head, thorax, abdomen, 6 legs, antennae.
+  // Drawn facing "up" (travel = -Y at angle 0) so we can rotate to heading.
+  const ANT_SVG = `
+<svg viewBox="0 0 24 24" width="22" height="22" fill="none" aria-hidden="true"
+     xmlns="http://www.w3.org/2000/svg">
+  <g stroke="currentColor" stroke-width="1.1" stroke-linecap="round" fill="currentColor">
+    <!-- antennae -->
+    <path d="M11 5.2 C9.6 3.6 9 3 8.2 2.4" fill="none"/>
+    <path d="M13 5.2 C14.4 3.6 15 3 15.8 2.4" fill="none"/>
+    <!-- legs (3 per side) -->
+    <path d="M10.6 10 C7.5 9.4 6 8.6 4.4 7.4" fill="none"/>
+    <path d="M10.4 12 C7.2 12 5.6 12.2 3.8 12.8" fill="none"/>
+    <path d="M10.6 14 C7.5 14.6 6 15.4 4.6 16.6" fill="none"/>
+    <path d="M13.4 10 C16.5 9.4 18 8.6 19.6 7.4" fill="none"/>
+    <path d="M13.6 12 C16.8 12 18.4 12.2 20.2 12.8" fill="none"/>
+    <path d="M13.4 14 C16.5 14.6 18 15.4 19.4 16.6" fill="none"/>
+    <!-- body: head, thorax, abdomen -->
+    <ellipse cx="12" cy="6" rx="2.3" ry="2.1"/>
+    <ellipse cx="12" cy="11" rx="1.9" ry="2.4"/>
+    <ellipse cx="12" cy="17" rx="3" ry="3.6"/>
+  </g>
+</svg>`;
+
+  /** @typedef {{el:HTMLElement,x:number,y:number,heading:number,speed:number,turn:number,wiggle:number,born:number,leaving:boolean}} Ant */
+  /** @type {Ant[]} */
+  const ants = [];
+  let layer = null;      // the fixed overlay container
+  let rafId = 0;         // active rAF handle (0 = idle)
+  let lastTs = 0;        // previous frame timestamp
+  let lastSpawn = 0;     // time of last spawn (drives idle fade)
+
+  const rand = (min, max) => min + Math.random() * (max - min);
+
+  function vw() { return window.innerWidth; }
+  function vh() { return window.innerHeight; }
+
+  function ensureLayer() {
+    if (layer) return layer;
+    layer = document.createElement('div');
+    layer.setAttribute('aria-hidden', 'true');
+    layer.style.cssText =
+      'position:fixed;inset:0;pointer-events:none;z-index:2147483000;' +
+      'overflow:hidden;contain:strict;color:#111317;';
+    document.body.appendChild(layer);
+    return layer;
+  }
+
+  function makeAnt(originX, originY) {
+    const el = document.createElement('div');
+    el.style.cssText =
+      'position:absolute;left:0;top:0;width:22px;height:22px;' +
+      'will-change:transform;transform:translate3d(-100px,-100px,0);' +
+      'transition:opacity .6s ease;opacity:0;';
+    el.innerHTML = ANT_SVG;
+
+    const ant = {
+      el,
+      x: originX,
+      y: originY,
+      heading: rand(0, Math.PI * 2),
+      // Reduced motion → slow, calm crawl. Otherwise a lively but unhurried pace.
+      speed: reduceMotion ? rand(8, 16) : rand(34, 72),     // px / second
+      turn: 0,
+      wiggle: rand(0, Math.PI * 2),
+      born: performance.now(),
+      leaving: false,
+    };
+    ensureLayer().appendChild(el);
+    // Fade in next frame so the transition runs.
+    requestAnimationFrame(() => { el.style.opacity = '0.92'; });
+    return ant;
+  }
+
+  function spawn(originX, originY) {
+    // Reduced-motion users get a smaller, calmer crew.
+    const lo = reduceMotion ? 1 : SPAWN_MIN;
+    const hi = reduceMotion ? 2 : SPAWN_MAX;
+    const count = Math.round(rand(lo, hi));
+
+    for (let i = 0; i < count; i++) {
+      // Spread the new arrivals around the trigger point.
+      const jitterX = rand(-26, 26);
+      const jitterY = rand(-26, 26);
+      ants.push(makeAnt(originX + jitterX, originY + jitterY));
+
+      // Enforce the cap by recycling the oldest ants.
+      if (ants.length > HARD_CAP) {
+        const old = ants.shift();
+        if (old && old.el) old.el.remove();
+      }
+    }
+
+    lastSpawn = performance.now();
+    startLoop();
+  }
+
+  function startLoop() {
+    if (rafId) return;
+    lastTs = performance.now();
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function stopLoop() {
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = 0;
+  }
+
+  function tick(ts) {
+    const dt = Math.min(0.05, (ts - lastTs) / 1000) || 0; // clamp big gaps (tab switches)
+    lastTs = ts;
+
+    const idle = ts - lastSpawn;
+    const colonyShouldLeave = idle > IDLE_FADE_MS;
+
+    const W = vw();
+    const H = vh();
+    const margin = 28;
+
+    for (let i = ants.length - 1; i >= 0; i--) {
+      const a = ants[i];
+
+      // Gentle, natural wander: heading drifts via a slowly-changing turn rate.
+      a.wiggle += dt * rand(1.5, 3.5);
+      a.turn += (rand(-1, 1) * (reduceMotion ? 0.4 : 1.1) - a.turn) * dt * 2;
+      a.heading += a.turn * dt;
+
+      // Nudge ants away from the edges so they stay on the page (unless leaving).
+      if (!a.leaving) {
+        if (a.x < margin) a.heading += dt * 1.6;
+        if (a.x > W - margin) a.heading -= dt * 1.6;
+        if (a.y < margin) a.heading += dt * 1.6;
+        if (a.y > H - margin) a.heading -= dt * 1.6;
+      }
+
+      // A subtle sideways shimmy makes the gait look organic.
+      const shimmy = Math.sin(a.wiggle) * (reduceMotion ? 1 : 6) * dt;
+
+      const vx = Math.cos(a.heading) * a.speed;
+      const vy = Math.sin(a.heading) * a.speed;
+      a.x += (vx) * dt + Math.cos(a.heading + Math.PI / 2) * shimmy;
+      a.y += (vy) * dt + Math.sin(a.heading + Math.PI / 2) * shimmy;
+
+      // When the colony has been idle, ants quietly wander off and fade out.
+      if (colonyShouldLeave && !a.leaving) {
+        a.leaving = true;
+        a.el.style.opacity = '0';
+      }
+
+      // Remove ants that have left the viewport entirely.
+      const off =
+        a.x < -60 || a.x > W + 60 || a.y < -60 || a.y > H + 60;
+      if (a.leaving && off) {
+        a.el.remove();
+        ants.splice(i, 1);
+        continue;
+      }
+      // Hard-wrap any non-leaving ant that somehow escapes (e.g. on resize).
+      if (!a.leaving) {
+        if (a.x < -60) a.x = W + 40;
+        if (a.x > W + 60) a.x = -40;
+        if (a.y < -60) a.y = H + 40;
+        if (a.y > H + 60) a.y = -40;
+      }
+
+      // The sprite faces "up" at angle 0; +90° aligns it with travel direction.
+      const deg = (a.heading * 180) / Math.PI + 90;
+      a.el.style.transform =
+        `translate3d(${a.x - 11}px, ${a.y - 11}px, 0) rotate(${deg}deg)`;
+    }
+
+    if (ants.length > 0) {
+      rafId = requestAnimationFrame(tick);
+    } else {
+      stopLoop();
+    }
+  }
+
+  // ---- Wiring ---------------------------------------------------------------
+  function triggerFromEvent(e) {
+    const target = /** @type {HTMLElement} */ (e.currentTarget);
+    const r = target.getBoundingClientRect();
+    spawn(r.left + r.width / 2, r.top + r.height / 2);
+  }
+
+  const triggers = Array.from(document.querySelectorAll('[data-ant-trigger]'));
+  const cleanups = [];
+
+  for (const t of triggers) {
+    const onDbl = (e) => triggerFromEvent(e);
+    t.addEventListener('dblclick', onDbl);
+    cleanups.push(() => t.removeEventListener('dblclick', onDbl));
+
+    // Bonus: keyboard "double Activate" on a focused logo link.
+    // Two Enter/Space presses within 500ms summon a crew too.
+    let lastKey = 0;
+    const onKey = (e) => {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      const now = performance.now();
+      if (now - lastKey < 500) {
+        lastKey = 0;
+        const r = t.getBoundingClientRect();
+        spawn(r.left + r.width / 2, r.top + r.height / 2);
+      } else {
+        lastKey = now;
+      }
+    };
+    // Listen on the focusable ancestor (the logo link) if present, else the img.
+    const focusEl = t.closest('a') || t;
+    focusEl.addEventListener('keydown', onKey);
+    cleanups.push(() => focusEl.removeEventListener('keydown', onKey));
+  }
+
+  // Clean up listeners / overlay on navigation away.
+  const onUnload = () => {
+    stopLoop();
+    for (const c of cleanups) c();
+    if (layer) layer.remove();
+  };
+  window.addEventListener('pagehide', onUnload, { once: true });
+</script>

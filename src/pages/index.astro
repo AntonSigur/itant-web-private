@@ -10,7 +10,7 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent('IT Ant — en
   <header class="site-header">
     <div class="container site-header__inner">
       <a class="brand" href="#top" aria-label={`${site.company} — home`}>
-        <img src="/brand/itant-logo.svg" alt="" width="38" height="38" />
+        <img src="/brand/itant-logo.svg" alt="" width="38" height="38" data-ant-trigger />
         <span class="brand__name">IT&nbsp;<span>Ant</span></span>
       </a>
       <nav class="site-nav" aria-label="Primary">
@@ -45,6 +45,7 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent('IT Ant — en
             width="380"
             height="285"
             fetchpriority="high"
+            data-ant-trigger
           />
         </div>
       </div>
