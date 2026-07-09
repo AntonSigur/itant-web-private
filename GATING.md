@@ -35,3 +35,9 @@ approver runs `publish.ps1 -Push`. This is the gate.
 ## Updating per release
 Content lives in Markdown/MDX under `src/content` (and page `.astro` files). Edit, commit to internal,
 run the gate to publish. See `docs/CONTENT-UPDATES.md`.
+
+## Remotes — WIRED (2026-07)
+- Internal (dev, this clone): `origin` = git@github.com:AntonSigur/itant-web-private.git (local bare kept as `local`).
+- Public (deploy, Azure SWA): git@github.com:AntonSigur/itant-web-public.git — target of `scripts/publish.ps1`.
+- The PUBLIC repo holds ONLY static web files (built dist + staticwebapp.config.json) — no README, no docs.
+- Publish: `./scripts/publish.ps1 -Push` builds and pushes the static output; Azure SWA deploys itant.is.
